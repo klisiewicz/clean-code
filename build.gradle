@@ -12,5 +12,6 @@ repositories {
 }
 
 dependencies {
+    implementation "org.fitnesse:fitnesse:20081201"
     testImplementation "junit:junit:4.12"
 }
