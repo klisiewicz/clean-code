@@ -1,0 +1,11 @@
+# IntelliJ
+.idea/**/
+out/
+.idea_modules/
+
+# Gradle
+.gradle
+/build/
+gradle-app.setting
+!gradle-wrapper.jar
+.gradletasknamecache
