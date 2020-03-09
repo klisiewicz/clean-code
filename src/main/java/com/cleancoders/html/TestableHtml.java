@@ -26,18 +26,16 @@ public class TestableHtml {
 
         public String invoke() throws Exception {
             if (pageData.hasAttribute("Test")) {
-                String mode = "setup";
                 if (includeSuiteSetup)
-                    includeIfInherited(mode, SuiteResponder.SUITE_SETUP_NAME);
-                includeIfInherited(mode, "SetUp");
+                    includeIfInherited("setup", SuiteResponder.SUITE_SETUP_NAME);
+                includeIfInherited("setup", "SetUp");
             }
 
             buffer.append(pageData.getContent());
             if (pageData.hasAttribute("Test")) {
-                String mode = "teardown";
-                includeIfInherited(mode, "TearDown");
+                includeIfInherited("teardown", "TearDown");
                 if (includeSuiteSetup)
-                    includeIfInherited(mode, SuiteResponder.SUITE_TEARDOWN_NAME);
+                    includeIfInherited("teardown", SuiteResponder.SUITE_TEARDOWN_NAME);
             }
 
             pageData.setContent(buffer.toString());
