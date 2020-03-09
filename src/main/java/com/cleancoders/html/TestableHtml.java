@@ -25,15 +25,20 @@ public class TestableHtml {
         }
 
         public String invoke() throws Exception {
-            if (pageData.hasAttribute("Test"))
-                content += includeSetups();
-
-            content += pageData.getContent();
-            if (pageData.hasAttribute("Test"))
-                content += includeTeardowns();
-
-            pageData.setContent(content);
+            if (isTestPage())
+                surroundPageWithSetupsAndTeardowns();
             return pageData.getHtml();
+        }
+
+        private boolean isTestPage() throws Exception {
+            return pageData.hasAttribute("Test");
+        }
+
+        private void surroundPageWithSetupsAndTeardowns() throws Exception {
+            content += includeSetups();
+            content += pageData.getContent();
+            content += includeTeardowns();
+            pageData.setContent(content);
         }
 
         private String includeSetups() throws Exception {
