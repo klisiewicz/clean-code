@@ -47,13 +47,13 @@ public class TestableHtml {
         private void includeIfInherited(String mode, String pageName) throws Exception {
             WikiPage page = PageCrawlerImpl.getInheritedPage(pageName, wikiPage);
             if (page != null)
-                includePage(mode, page);
+                buffer.append(includePage(mode, page));
         }
 
-        private void includePage(String mode, WikiPage page) throws Exception {
+        private String includePage(String mode, WikiPage page) throws Exception {
             WikiPagePath pagePath = pageCrawler.getFullPath(page);
             String pagePathName = PathParser.render(pagePath);
-            buffer.append(String.format("!include -%s .%s%n", mode, pagePathName));
+            return String.format("!include -%s .%s%n", mode, pagePathName);
         }
     }
 }
