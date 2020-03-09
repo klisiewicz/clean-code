@@ -25,21 +25,27 @@ public class TestableHtml {
         }
 
         public String invoke() throws Exception {
-            if (pageData.hasAttribute("Test")) {
-                if (includeSuiteSetup)
-                    includeIfInherited("setup", SuiteResponder.SUITE_SETUP_NAME);
-                includeIfInherited("setup", "SetUp");
-            }
+            if (pageData.hasAttribute("Test"))
+                includeSetups();
 
             buffer.append(pageData.getContent());
-            if (pageData.hasAttribute("Test")) {
-                includeIfInherited("teardown", "TearDown");
-                if (includeSuiteSetup)
-                    includeIfInherited("teardown", SuiteResponder.SUITE_TEARDOWN_NAME);
-            }
+            if (pageData.hasAttribute("Test"))
+                includeTeardowns();
 
             pageData.setContent(buffer.toString());
             return pageData.getHtml();
+        }
+
+        private void includeSetups() throws Exception {
+            if (includeSuiteSetup)
+                includeIfInherited("setup", SuiteResponder.SUITE_SETUP_NAME);
+            includeIfInherited("setup", "SetUp");
+        }
+
+        private void includeTeardowns() throws Exception {
+            includeIfInherited("teardown", "TearDown");
+            if (includeSuiteSetup)
+                includeIfInherited("teardown", SuiteResponder.SUITE_TEARDOWN_NAME);
         }
 
         private void includeIfInherited(String mode, String pageName) throws Exception {
