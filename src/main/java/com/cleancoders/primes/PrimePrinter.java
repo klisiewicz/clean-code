@@ -1,8 +1,11 @@
 package com.cleancoders.primes;
 
 public class PrimePrinter {
+    private static final int NUMBER_OF_PRIMES = 1000;
     public static void main(String[] args) {
-        new PrimePrinterHelper().invoke();
+        final PrimePrinterHelper primePrinterHelper = new PrimePrinterHelper();
+        int[] primes = primePrinterHelper.generatePrimes();
+        primePrinterHelper.printNumbers(primes, NUMBER_OF_PRIMES);
     }
 }
 
@@ -24,7 +27,7 @@ class PrimePrinterHelper {
     private int n;
     private final int[] multiples = new int[ordMax + 1];
 
-    public void invoke() {
+    public int[] generatePrimes() {
         candicate = 1;
         primeIndex = 1;
         primes[1] = 2;
@@ -52,10 +55,10 @@ class PrimePrinterHelper {
             primeIndex = primeIndex + 1;
             primes[primeIndex] = candicate;
         }
-        printNumbers(primes, numberOfPrimes);
+        return primes;
     }
 
-    private void printNumbers(int[] numbers, int totalNumbers) {
+    public void printNumbers(int[] numbers, int totalNumbers) {
         pageNumber = 1;
         pageOffset = 1;
         while (pageOffset <= totalNumbers) {
