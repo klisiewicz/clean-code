@@ -6,15 +6,14 @@ public class PrimePrinter {
     private static final int COLUMNS = 4;
 
     public static void main(String[] args) {
-        int[] primes = new PrimePrinterHelper().generatePrimes();
+        int[] primes = new PrimeGenerator().generatePrimes(NUMBER_OF_PRIMES);
         new NumberPrinter(LINES_PER_PAGE, COLUMNS).print(primes, NUMBER_OF_PRIMES);
     }
 }
 
-class PrimePrinterHelper {
-    private final int numberOfPrimes = 1000;
+class PrimeGenerator {
+    private int[] primes;
     private final int ordMax = 30;
-    private final int[] primes = new int[numberOfPrimes + 1];
     private int candicate;
     private int primeIndex;
     private boolean possiblyPrime;
@@ -23,7 +22,8 @@ class PrimePrinterHelper {
     private int n;
     private final int[] multiples = new int[ordMax + 1];
 
-    public int[] generatePrimes() {
+    public int[] generatePrimes(int numberOfPrimes) {
+        primes = new int[numberOfPrimes + 1];
         candicate = 1;
         primeIndex = 1;
         primes[1] = 2;
