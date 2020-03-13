@@ -59,22 +59,36 @@ class PrimePrinterHelper {
     }
 
     public void printNumbers(int[] numbers, int totalNumbers) {
-        pageNumber = 1;
-        pageOffset = 1;
-        while (pageOffset <= totalNumbers) {
-            System.out.print("The First ");
-            System.out.print(totalNumbers);
-            System.out.print(" Prime Numbers --- Page ");
-            System.out.println(pageNumber);
-            for (rowOffset = pageOffset; rowOffset < pageOffset + linesPerPage; rowOffset++) {
-                for (column = 0; column < columns; column++)
-                    if (rowOffset + column * linesPerPage <= totalNumbers)
-                        System.out.format("%10d", numbers[rowOffset + column * linesPerPage]);
-                System.out.println();
+        new NumberPrinter(numbers, totalNumbers).invoke();
+    }
+
+    private class NumberPrinter {
+        private int[] numbers;
+        private int totalNumbers;
+
+        public NumberPrinter(int[] numbers, int totalNumbers) {
+            this.numbers = numbers;
+            this.totalNumbers = totalNumbers;
+        }
+
+        public void invoke() {
+            pageNumber = 1;
+            pageOffset = 1;
+            while (pageOffset <= totalNumbers) {
+                System.out.print("The First ");
+                System.out.print(totalNumbers);
+                System.out.print(" Prime Numbers --- Page ");
+                System.out.println(pageNumber);
+                for (rowOffset = pageOffset; rowOffset < pageOffset + linesPerPage; rowOffset++) {
+                    for (column = 0; column < columns; column++)
+                        if (rowOffset + column * linesPerPage <= totalNumbers)
+                            System.out.format("%10d", numbers[rowOffset + column * linesPerPage]);
+                    System.out.println();
+                }
+                System.out.println("\f");
+                pageNumber = pageNumber + 1;
+                pageOffset = pageOffset + linesPerPage * columns;
             }
-            System.out.println("\f");
-            pageNumber = pageNumber + 1;
-            pageOffset = pageOffset + linesPerPage * columns;
         }
     }
 }
