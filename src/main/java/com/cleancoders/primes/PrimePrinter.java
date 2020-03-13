@@ -6,7 +6,10 @@ public class PrimePrinter {
     private static final int COLUMNS = 4;
 
     public static void main(String[] args) {
-        int[] primes = new PrimeGenerator().generatePrimes(NUMBER_OF_PRIMES);
-        new NumberPrinter(LINES_PER_PAGE, COLUMNS).print(primes, NUMBER_OF_PRIMES);
+        final PrimeGenerator primeGenerator = new PrimeGenerator();
+        final NumberPrinter numberPrinter = new NumberPrinter(LINES_PER_PAGE, COLUMNS);
+
+        int[] primes = primeGenerator.generatePrimes(NUMBER_OF_PRIMES);
+        numberPrinter.print(primes, NUMBER_OF_PRIMES);
     }
 }
