@@ -2,23 +2,19 @@ package com.cleancoders.primes;
 
 public class PrimePrinter {
     private static final int NUMBER_OF_PRIMES = 1000;
+    private static final int LINES_PER_PAGE = 50;
+    private static final int COLUMNS = 4;
+
     public static void main(String[] args) {
-        final PrimePrinterHelper primePrinterHelper = new PrimePrinterHelper();
-        int[] primes = primePrinterHelper.generatePrimes();
-        primePrinterHelper.printNumbers(primes, NUMBER_OF_PRIMES);
+        int[] primes = new PrimePrinterHelper().generatePrimes();
+        new NumberPrinter(LINES_PER_PAGE, COLUMNS).print(primes, NUMBER_OF_PRIMES);
     }
 }
 
 class PrimePrinterHelper {
     private final int numberOfPrimes = 1000;
-    private final int linesPerPage = 50;
-    private final int columns = 4;
     private final int ordMax = 30;
     private final int[] primes = new int[numberOfPrimes + 1];
-    private int pageNumber;
-    private int pageOffset;
-    private int rowOffset;
-    private int column;
     private int candicate;
     private int primeIndex;
     private boolean possiblyPrime;
@@ -57,9 +53,4 @@ class PrimePrinterHelper {
         }
         return primes;
     }
-
-    public void printNumbers(int[] numbers, int totalNumbers) {
-        new NumberPrinter(linesPerPage, columns).print(numbers, totalNumbers);
-    }
-
 }
