@@ -1,19 +1,15 @@
 package com.cleancoders.primes;
 
 class NumberPrinter {
-    private final int[] numbers;
-    private final int totalNumbers;
     private final int linesPerPage;
     private final int columns;
 
-    public NumberPrinter(int[] numbers, int totalNumbers, int linesPerPage, int columns) {
-        this.numbers = numbers;
-        this.totalNumbers = totalNumbers;
+    public NumberPrinter(int linesPerPage, int columns) {
         this.linesPerPage = linesPerPage;
         this.columns = columns;
     }
 
-    public void print() {
+    public void print(int[] numbers, int totalNumbers) {
         int pageNumber = 1;
         int pageOffset = 1;
         while (pageOffset <= totalNumbers) {
