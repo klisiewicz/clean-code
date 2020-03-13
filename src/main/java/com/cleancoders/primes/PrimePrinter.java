@@ -2,6 +2,12 @@ package com.cleancoders.primes;
 
 public class PrimePrinter {
     public static void main(String[] args) {
+        new PrimePrinterHelper().invoke();
+    }
+}
+
+class PrimePrinterHelper {
+    public void invoke() {
         final int M = 1000;
         final int RR = 50;
         final int CC = 4;
