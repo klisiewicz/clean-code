@@ -52,24 +52,26 @@ class PrimePrinterHelper {
             primeIndex = primeIndex + 1;
             primes[primeIndex] = candicate;
         }
-        {
-            pageNumber = 1;
-            pageOffset = 1;
-            while (pageOffset <= numberOfPrimes) {
-                System.out.print("The First ");
-                System.out.print(numberOfPrimes);
-                System.out.print(" Prime Numbers --- Page ");
-                System.out.println(pageNumber);
-                for (rowOffset = pageOffset; rowOffset < pageOffset + linesPerPage; rowOffset++) {
-                    for (column = 0; column < columns; column++)
-                        if (rowOffset + column * linesPerPage <= numberOfPrimes)
-                            System.out.format("%10d", primes[rowOffset + column * linesPerPage]);
-                    System.out.println();
-                }
-                System.out.println("\f");
-                pageNumber = pageNumber + 1;
-                pageOffset = pageOffset + linesPerPage * columns;
+        printNumbers(primes, numberOfPrimes);
+    }
+
+    private void printNumbers(int[] numbers, int totalNumbers) {
+        pageNumber = 1;
+        pageOffset = 1;
+        while (pageOffset <= totalNumbers) {
+            System.out.print("The First ");
+            System.out.print(totalNumbers);
+            System.out.print(" Prime Numbers --- Page ");
+            System.out.println(pageNumber);
+            for (rowOffset = pageOffset; rowOffset < pageOffset + linesPerPage; rowOffset++) {
+                for (column = 0; column < columns; column++)
+                    if (rowOffset + column * linesPerPage <= totalNumbers)
+                        System.out.format("%10d", numbers[rowOffset + column * linesPerPage]);
+                System.out.println();
             }
+            System.out.println("\f");
+            pageNumber = pageNumber + 1;
+            pageOffset = pageOffset + linesPerPage * columns;
         }
     }
 }
