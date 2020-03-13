@@ -7,69 +7,68 @@ public class PrimePrinter {
 }
 
 class PrimePrinterHelper {
+    private final int numberOfPrimes = 1000;
+    private final int linesPerPage = 50;
+    private final int columns = 4;
+    private final int ordMax = 30;
+    private final int[] primes = new int[numberOfPrimes + 1];
+    private int pageNumber;
+    private int pageOffset;
+    private int rowOffset;
+    private int column;
+    private int candicate;
+    private int primeIndex;
+    private boolean possiblyPrime;
+    private int ord;
+    private int square;
+    private int n;
+    private final int[] multiples = new int[ordMax + 1];
+
     public void invoke() {
-        final int M = 1000;
-        final int RR = 50;
-        final int CC = 4;
-        final int WW = 10;
-        final int ORDMAX = 30;
-        int P[] = new int[M + 1];
-        int PAGENUMBER;
-        int PAGEOFFSET;
-        int ROWOFFSET;
-        int C;
-        int J;
-        int K;
-        boolean JPRIME;
-        int ORD;
-        int SQUARE;
-        int N;
-        int MULT[] = new int[ORDMAX + 1];
+        candicate = 1;
+        primeIndex = 1;
+        primes[1] = 2;
+        ord = 2;
+        square = 9;
 
-        J = 1;
-        K = 1;
-        P[1] = 2;
-        ORD = 2;
-        SQUARE = 9;
-
-        while (K < M) {
+        while (primeIndex < numberOfPrimes) {
             do {
-                J = J + 2;
-                if (J == SQUARE) {
-                    ORD = ORD + 1;
-                    SQUARE = P[ORD] * P[ORD];
-                    MULT[ORD - 1] = J;
+                candicate = candicate + 2;
+                if (candicate == square) {
+                    ord = ord + 1;
+                    square = primes[ord] * primes[ord];
+                    multiples[ord - 1] = candicate;
                 }
-                N = 2;
-                JPRIME = true;
-                while (N < ORD && JPRIME) {
-                    while (MULT[N] < J)
-                        MULT[N] = MULT[N] + P[N] + P[N];
-                    if (MULT[N] == J)
-                        JPRIME = false;
-                    N = N + 1;
+                n = 2;
+                possiblyPrime = true;
+                while (n < ord && possiblyPrime) {
+                    while (multiples[n] < candicate)
+                        multiples[n] = multiples[n] + primes[n] + primes[n];
+                    if (multiples[n] == candicate)
+                        possiblyPrime = false;
+                    n = n + 1;
                 }
-            } while (!JPRIME);
-            K = K + 1;
-            P[K] = J;
+            } while (!possiblyPrime);
+            primeIndex = primeIndex + 1;
+            primes[primeIndex] = candicate;
         }
         {
-            PAGENUMBER = 1;
-            PAGEOFFSET = 1;
-            while (PAGEOFFSET <= M) {
+            pageNumber = 1;
+            pageOffset = 1;
+            while (pageOffset <= numberOfPrimes) {
                 System.out.print("The First ");
-                System.out.print(M);
+                System.out.print(numberOfPrimes);
                 System.out.print(" Prime Numbers --- Page ");
-                System.out.println(PAGENUMBER);
-                for (ROWOFFSET = PAGEOFFSET; ROWOFFSET < PAGEOFFSET + RR; ROWOFFSET++) {
-                    for (C = 0; C < CC; C++)
-                        if (ROWOFFSET + C * RR <= M)
-                            System.out.format("%10d", P[ROWOFFSET + C * RR]);
+                System.out.println(pageNumber);
+                for (rowOffset = pageOffset; rowOffset < pageOffset + linesPerPage; rowOffset++) {
+                    for (column = 0; column < columns; column++)
+                        if (rowOffset + column * linesPerPage <= numberOfPrimes)
+                            System.out.format("%10d", primes[rowOffset + column * linesPerPage]);
                     System.out.println();
                 }
                 System.out.println("\f");
-                PAGENUMBER = PAGENUMBER + 1;
-                PAGEOFFSET = PAGEOFFSET + RR * CC;
+                pageNumber = pageNumber + 1;
+                pageOffset = pageOffset + linesPerPage * columns;
             }
         }
     }
