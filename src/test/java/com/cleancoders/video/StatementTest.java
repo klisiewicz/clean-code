@@ -16,39 +16,42 @@ public class StatementTest {
     }
 
     @Test
-    public void testSingleNewReleaseStatement() {
+    public void testSingleNewReleaseStatementTotals() {
         statement.addRental(new Rental(new Movie("The Cell", Movie.NEW_RELEASE), 3));
-        statement.statement();
+        statement.generate();
         assertThat(statement.getTotal(), is(9.0));
         assertThat(statement.getFrequentRenterPoints(), is(2));
     }
 
     @Test
-    public void testDualNewReleaseStatement() {
+    public void testDualNewReleaseStatementTotals() {
         statement.addRental(new Rental(new Movie("The Cell", Movie.NEW_RELEASE), 3));
         statement.addRental(new Rental(new Movie("The Tiger Movie", Movie.NEW_RELEASE), 3));
-        assertEquals(
-                "Rental Record for Fred\n" +
-                        "\tThe Cell\t9.0\n" +
-                        "\tThe Tiger Movie\t9.0\n" +
-                        "You owed 18.0\n" +
-                        "You earned 4 frequent renter points\n",
-                statement.statement());
+        statement.generate();
+        assertThat(statement.getTotal(), is(18.0));
+        assertThat(statement.getFrequentRenterPoints(), is(4));
     }
 
     @Test
-    public void testSingleChildrensStatement() {
+    public void testSingleChildrensStatementTotals() {
         statement.addRental(new Rental(new Movie("The Tiger Movie", Movie.CHILDRENS), 3));
-        assertEquals(
-                "Rental Record for Fred\n" +
-                        "\tThe Tiger Movie\t1.5\n" +
-                        "You owed 1.5\n" +
-                        "You earned 1 frequent renter points\n",
-                statement.statement());
+        statement.generate();
+        assertThat(statement.getTotal(), is(1.5));
+        assertThat(statement.getFrequentRenterPoints(), is(1));
     }
 
     @Test
-    public void testMultipleRegularStatement() {
+    public void testMultipleRegularStatementTotals() {
+        statement.addRental(new Rental(new Movie("Plan 9 from Outer Space", Movie.REGULAR), 1));
+        statement.addRental(new Rental(new Movie("8 1/2", Movie.REGULAR), 2));
+        statement.addRental(new Rental(new Movie("Eraserhead", Movie.REGULAR), 3));
+        statement.generate();
+        assertThat(statement.getTotal(), is(7.5));
+        assertThat(statement.getFrequentRenterPoints(), is(3));
+    }
+
+    @Test
+    public void testMultipleRegularStatementFormat() {
         statement.addRental(new Rental(new Movie("Plan 9 from Outer Space", Movie.REGULAR), 1));
         statement.addRental(new Rental(new Movie("8 1/2", Movie.REGULAR), 2));
         statement.addRental(new Rental(new Movie("Eraserhead", Movie.REGULAR), 3));
@@ -60,6 +63,6 @@ public class StatementTest {
                         "\tEraserhead\t3.5\n" +
                         "You owed 7.5\n" +
                         "You earned 3 frequent renter points\n",
-                statement.statement());
+                statement.generate());
     }
 }
