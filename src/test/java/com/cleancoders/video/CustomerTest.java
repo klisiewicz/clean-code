@@ -3,7 +3,9 @@ package com.cleancoders.video;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 public class CustomerTest {
     private Customer customer;
@@ -21,6 +23,8 @@ public class CustomerTest {
                         "The Cell\t9.0\n" +
                         "You owed 9.0\nYou earned 2 frequent renter points\n",
                 customer.statement());
+        assertThat(customer.getTotal(), is(9.0));
+        assertThat(customer.getFrequentRenterPoints(), is(2));
     }
 
     @Test
