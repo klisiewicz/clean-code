@@ -19,12 +19,12 @@ public class StatementTest {
     @Before
     public void setUp() {
         statement = new Statement("Customer");
-        newReleaseMovie1 = new Movie("New Release 1", Movie.NEW_RELEASE);
-        newReleaseMovie2 = new Movie("New Release 2", Movie.NEW_RELEASE);
-        childrenMovie = new Movie("Children", Movie.CHILDRENS);
-        regularMovie1 = new Movie("Regular 1", Movie.REGULAR);
-        regularMovie2 = new Movie("Regular 2", Movie.REGULAR);
-        regularMovie3 = new Movie("Regular 3", Movie.REGULAR);
+        newReleaseMovie1 = new NewReleaseMovie("New Release 1");
+        newReleaseMovie2 = new NewReleaseMovie("New Release 2");
+        childrenMovie = new ChildrenMovie("Children");
+        regularMovie1 = new RegularMovie("Regular 1");
+        regularMovie2 = new RegularMovie("Regular 2");
+        regularMovie3 = new RegularMovie("Regular 3");
     }
 
     @Test

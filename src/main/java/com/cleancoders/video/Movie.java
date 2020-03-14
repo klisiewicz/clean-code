@@ -48,8 +48,6 @@ public class Movie {
 
     public int determineFrequentRentalPoints(int daysRented) {
         boolean bonusIsEarned = priceCode == NEW_RELEASE && daysRented > 1;
-        if (bonusIsEarned)
-            return 2;
-        return 1;
+        return (bonusIsEarned) ? 2 : 1;
     }
 }
