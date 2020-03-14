@@ -17,10 +17,6 @@ public class Statement {
         rentals.add(rental);
     }
 
-    public String getCustomerName() {
-        return customerName;
-    }
-
     public String generate() {
         clearTotals();
         String statementText = header();
