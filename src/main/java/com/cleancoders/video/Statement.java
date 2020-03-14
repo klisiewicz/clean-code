@@ -47,16 +47,9 @@ public class Statement {
 
     private String rentalLine(Rental rental) {
         double rentalAmount = rental.determineAmount();
-        frequentRenterPoints += determineFrequentRentalPoints(rental);
+        frequentRenterPoints += rental.determineFrequentRentalPoints();
         totalAmount += rentalAmount;
         return formatRentalLine(rental, rentalAmount);
-    }
-
-    private int determineFrequentRentalPoints(Rental rental) {
-        boolean bonusIsEarned = rental.getMovie().getPriceCode() == Movie.NEW_RELEASE && rental.getDaysRented() > 1;
-        if (bonusIsEarned)
-            return 2;
-        return 1;
     }
 
     private String formatRentalLine(Rental rental, double rentalAmount) {
