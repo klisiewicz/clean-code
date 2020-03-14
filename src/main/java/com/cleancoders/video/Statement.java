@@ -47,23 +47,7 @@ public class Statement {
 
     private String rentalLine(Rental rental) {
         String rentalLine = "";
-        double thisAmount = 0;
-        // determines the amount for each line
-        switch (rental.getMovie().getPriceCode()) {
-            case Movie.REGULAR:
-                thisAmount += 2;
-                if (rental.getDaysRented() > 2)
-                    thisAmount += (rental.getDaysRented() - 2) * 1.5;
-                break;
-            case Movie.NEW_RELEASE:
-                thisAmount += rental.getDaysRented() * 3;
-                break;
-            case Movie.CHILDRENS:
-                thisAmount += 1.5;
-                if (rental.getDaysRented() > 3)
-                    thisAmount += (rental.getDaysRented() - 3) * 1.5;
-                break;
-        }
+        double rentalAmount = determineAmount(rental);
 
         frequentRenterPoints++;
 
@@ -72,9 +56,30 @@ public class Statement {
             frequentRenterPoints++;
 
         rentalLine += "\t" + rental.getMovie().getTitle() + "\t"
-                + thisAmount + "\n";
-        totalAmount += thisAmount;
+                + rentalAmount + "\n";
+        totalAmount += rentalAmount;
         return rentalLine;
+    }
+
+    private double determineAmount(Rental rental) {
+        double rentalAmount = 0;
+        // determines the amount for each line
+        switch (rental.getMovie().getPriceCode()) {
+            case Movie.REGULAR:
+                rentalAmount += 2;
+                if (rental.getDaysRented() > 2)
+                    rentalAmount += (rental.getDaysRented() - 2) * 1.5;
+                break;
+            case Movie.NEW_RELEASE:
+                rentalAmount += rental.getDaysRented() * 3;
+                break;
+            case Movie.CHILDRENS:
+                rentalAmount += 1.5;
+                if (rental.getDaysRented() > 3)
+                    rentalAmount += (rental.getDaysRented() - 3) * 1.5;
+                break;
+        }
+        return rentalAmount;
     }
 
     private String footer() {
