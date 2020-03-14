@@ -46,15 +46,14 @@ public class Statement {
     }
 
     private String rentalLine(Rental rental) {
-        String rentalLine = "";
         double rentalAmount = determineAmount(rental);
-
         frequentRenterPoints += determineFrequentRentalPoints(rental);
-
-        rentalLine += "\t" + rental.getMovie().getTitle() + "\t"
-                + rentalAmount + "\n";
         totalAmount += rentalAmount;
-        return rentalLine;
+        return formatRentalLine(rental, rentalAmount);
+    }
+
+    private String formatRentalLine(Rental rental, double rentalAmount) {
+        return "\t" + rental.getMovie().getTitle() + "\t" + rentalAmount + "\n";
     }
 
     private int determineFrequentRentalPoints(Rental rental) {
