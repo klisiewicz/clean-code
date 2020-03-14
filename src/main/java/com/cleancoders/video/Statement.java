@@ -22,17 +22,14 @@ public class Statement {
     }
 
     public String generate() {
-        initialize();
+        clearTotals();
         String statementText = header();
         statementText += rentalLines();
-        statementText += "You owed " + String.valueOf(totalAmount) + "\n";
-        statementText += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points\n";
-
-
+        statementText += footer();
         return statementText;
     }
 
-    private void initialize() {
+    private void clearTotals() {
         totalAmount = 0;
         frequentRenterPoints = 0;
     }
@@ -69,11 +66,16 @@ public class Statement {
                 frequentRenterPoints++;
 
             rentalLines += "\t" + rental.getMovie().getTitle() + "\t"
-                    + String.valueOf(thisAmount) + "\n";
+                    + thisAmount + "\n";
             totalAmount += thisAmount;
 
         }
         return rentalLines;
+    }
+
+    private String footer() {
+        return "You owed " + totalAmount + "\n" +
+                "You earned " + frequentRenterPoints + " frequent renter points\n";
     }
 
     public double getTotal() {
