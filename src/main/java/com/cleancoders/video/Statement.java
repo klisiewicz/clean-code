@@ -49,16 +49,19 @@ public class Statement {
         String rentalLine = "";
         double rentalAmount = determineAmount(rental);
 
-        frequentRenterPoints++;
-
-        if (rental.getMovie().getPriceCode() == Movie.NEW_RELEASE
-                && rental.getDaysRented() > 1)
-            frequentRenterPoints++;
+        frequentRenterPoints += determineFrequentRentalPoints(rental);
 
         rentalLine += "\t" + rental.getMovie().getTitle() + "\t"
                 + rentalAmount + "\n";
         totalAmount += rentalAmount;
         return rentalLine;
+    }
+
+    private int determineFrequentRentalPoints(Rental rental) {
+        boolean bonusIsEarned = rental.getMovie().getPriceCode() == Movie.NEW_RELEASE && rental.getDaysRented() > 1;
+        if (bonusIsEarned)
+            return 2;
+        return 1;
     }
 
     private double determineAmount(Rental rental) {
