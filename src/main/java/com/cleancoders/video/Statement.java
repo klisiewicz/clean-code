@@ -17,6 +17,14 @@ public class Statement {
         rentals.add(rental);
     }
 
+    public double getTotal() {
+        return totalAmount;
+    }
+
+    public int getFrequentRenterPoints() {
+        return frequentRenterPoints;
+    }
+
     public String generate() {
         clearTotals();
         String statementText = header();
@@ -55,13 +63,5 @@ public class Statement {
     private String footer() {
         return "You owed " + totalAmount + "\n" +
                 "You earned " + frequentRenterPoints + " frequent renter points\n";
-    }
-
-    public double getTotal() {
-        return totalAmount;
-    }
-
-    public int getFrequentRenterPoints() {
-        return frequentRenterPoints;
     }
 }
