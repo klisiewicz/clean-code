@@ -9,10 +9,6 @@ public class Rental {
         this.daysRented = daysRented;
     }
 
-    public int getDaysRented() {
-        return daysRented;
-    }
-
     public Movie getMovie() {
         return movie;
     }
@@ -27,23 +23,23 @@ public class Rental {
         switch (getMovie().getPriceCode()) {
             case Movie.REGULAR:
                 rentalAmount += 2;
-                if (getDaysRented() > 2)
-                    rentalAmount += (getDaysRented() - 2) * 1.5;
+                if (daysRented > 2)
+                    rentalAmount += (daysRented - 2) * 1.5;
                 break;
             case Movie.NEW_RELEASE:
-                rentalAmount += getDaysRented() * 3;
+                rentalAmount += daysRented * 3;
                 break;
             case Movie.CHILDRENS:
                 rentalAmount += 1.5;
-                if (getDaysRented() > 3)
-                    rentalAmount += (getDaysRented() - 3) * 1.5;
+                if (daysRented > 3)
+                    rentalAmount += (daysRented - 3) * 1.5;
                 break;
         }
         return rentalAmount;
     }
 
     public int determineFrequentRentalPoints() {
-        boolean bonusIsEarned = getMovie().getPriceCode() == Movie.NEW_RELEASE && getDaysRented() > 1;
+        boolean bonusIsEarned = getMovie().getPriceCode() == Movie.NEW_RELEASE && daysRented > 1;
         if (bonusIsEarned)
             return 2;
         return 1;
