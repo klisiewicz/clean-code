@@ -22,8 +22,7 @@ public class Statement {
     }
 
     public String generate() {
-        totalAmount = 0;
-        frequentRenterPoints = 0;
+        initialize();
         String result = "Rental Record for " + getCustomerName() + "\n";
 
         for (Rental rental : rentals) {
@@ -62,6 +61,11 @@ public class Statement {
 
 
         return result;
+    }
+
+    private void initialize() {
+        totalAmount = 0;
+        frequentRenterPoints = 0;
     }
 
     public double getTotal() {
