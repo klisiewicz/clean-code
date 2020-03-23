@@ -11,7 +11,7 @@ public class StackTest {
 
     @Before
     public void setUp() {
-        stack = new Stack<>();
+        stack = Stack.make(2);
     }
 
     @Test
@@ -32,5 +32,12 @@ public class StackTest {
         stack.push("1");
         stack.pop();
         assertThat(stack.isEmpty(), is(true));
+    }
+
+    @Test(expected = Stack.OverflowException.class)
+    public void whenPushedPassedLimitStackShouldOverflow() {
+        stack.push("1");
+        stack.push("2");
+        stack.push("3");
     }
 }

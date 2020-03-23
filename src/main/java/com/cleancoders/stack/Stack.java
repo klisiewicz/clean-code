@@ -1,7 +1,12 @@
 package com.cleancoders.stack;
 
 public class Stack<T> {
+    private final int capacity;
     private int size = 0;
+
+    private Stack(int capacity) {
+        this.capacity = capacity;
+    }
 
     public boolean isEmpty() {
         return size == 0;
@@ -11,11 +16,19 @@ public class Stack<T> {
         return size;
     }
 
-    public void push(T element) {
-        size++;
+    public static <T> Stack<T> make(int capacity) {
+        return new Stack<>(capacity);
     }
 
     public void pop() {
         size--;
+    }
+
+    public void push(T element) {
+        if (size == capacity) throw new OverflowException();
+        size++;
+    }
+
+    public static class OverflowException extends RuntimeException {
     }
 }
