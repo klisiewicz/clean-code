@@ -40,4 +40,9 @@ public class StackTest {
         stack.push("2");
         stack.push("3");
     }
+
+    @Test(expected = Stack.UnderflowException.class)
+    public void whenEmptyIsPoppedStackShouldUnderflow() {
+        stack.pop();
+    }
 }

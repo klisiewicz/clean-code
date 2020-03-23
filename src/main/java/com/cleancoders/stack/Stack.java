@@ -21,6 +21,7 @@ public class Stack<T> {
     }
 
     public void pop() {
+        if (size == 0) throw new UnderflowException();
         size--;
     }
 
@@ -30,5 +31,8 @@ public class Stack<T> {
     }
 
     public static class OverflowException extends RuntimeException {
+    }
+
+    public static class UnderflowException extends RuntimeException {
     }
 }
