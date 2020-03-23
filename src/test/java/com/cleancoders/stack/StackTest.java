@@ -45,4 +45,10 @@ public class StackTest {
     public void whenEmptyIsPoppedStackShouldUnderflow() {
         stack.pop();
     }
+
+    @Test
+    public void whenOneIsPushedOneIsPopped() {
+        stack.push("1");
+        assertThat(stack.pop(), is("1"));
+    }
 }
