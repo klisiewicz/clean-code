@@ -20,6 +20,11 @@ public class StackTest {
         assertThat(stack.getSize(), is(0));
     }
 
+    @Test(expected = Stack.IllegalCapacityException.class)
+    public void whenCreatingStackWithNegativeSizeShouldThrowIllegalCapacity() {
+        Stack.<String>make(-1);
+    }
+
     @Test
     public void afterOnePushStackSizeShouldBeOne() {
         stack.push("1");

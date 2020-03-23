@@ -20,6 +20,7 @@ public class Stack<T> {
     }
 
     public static <T> Stack<T> make(int capacity) {
+        if (capacity < 0) throw new IllegalCapacityException();
         return new Stack<>(capacity);
     }
 
@@ -37,5 +38,8 @@ public class Stack<T> {
     }
 
     public static class UnderflowException extends RuntimeException {
+    }
+
+    public static class IllegalCapacityException extends RuntimeException {
     }
 }
