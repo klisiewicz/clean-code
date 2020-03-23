@@ -13,7 +13,7 @@ public class BoundedStack<T> implements Stack<T> {
 
     static <T> Stack<T> make(int capacity) {
         if (capacity < 0) throw new IllegalCapacityException();
-        return new BoundedStack<>(capacity);
+        return (capacity == 0) ? new ZeroCapacityStack<>() : new BoundedStack<>(capacity);
     }
 
     @Override
@@ -36,5 +36,28 @@ public class BoundedStack<T> implements Stack<T> {
     public T pop() {
         if (size == 0) throw new UnderflowException();
         return elements[--size];
+    }
+
+    private static class ZeroCapacityStack<T> implements Stack<T> {
+
+        @Override
+        public boolean isEmpty() {
+            return true;
+        }
+
+        @Override
+        public int getSize() {
+            return 0;
+        }
+
+        @Override
+        public void push(T element) {
+            throw new Stack.OverflowException();
+        }
+
+        @Override
+        public T pop() {
+            throw new Stack.UnderflowException();
+        }
     }
 }
