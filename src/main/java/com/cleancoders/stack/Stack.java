@@ -2,11 +2,13 @@ package com.cleancoders.stack;
 
 public class Stack<T> {
     private final int capacity;
-    private T element;
+    private T[] elements;
     private int size = 0;
 
+    @SuppressWarnings("unchecked")
     private Stack(int capacity) {
         this.capacity = capacity;
+        elements = (T[]) new Object[capacity];
     }
 
     public boolean isEmpty() {
@@ -23,14 +25,12 @@ public class Stack<T> {
 
     public void push(T element) {
         if (size == capacity) throw new OverflowException();
-        this.element = element;
-        size++;
+        elements[size++] = element;
     }
 
     public T pop() {
         if (size == 0) throw new UnderflowException();
-        size--;
-        return element;
+        return elements[--size];
     }
 
     public static class OverflowException extends RuntimeException {
