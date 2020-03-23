@@ -9,6 +9,8 @@ public interface Stack<T> {
 
     T pop();
 
+    T top();
+
     class OverflowException extends RuntimeException {
     }
 
@@ -16,5 +18,8 @@ public interface Stack<T> {
     }
 
     class IllegalCapacityException extends RuntimeException {
+    }
+
+    class EmptyException extends RuntimeException {
     }
 }

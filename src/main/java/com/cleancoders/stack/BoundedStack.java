@@ -34,8 +34,14 @@ public class BoundedStack<T> implements Stack<T> {
 
     @Override
     public T pop() {
-        if (size == 0) throw new UnderflowException();
+        if (isEmpty()) throw new UnderflowException();
         return elements[--size];
+    }
+
+    @Override
+    public T top() {
+        if (isEmpty()) throw new EmptyException();
+        return elements[size - 1];
     }
 
     private static class ZeroCapacityStack<T> implements Stack<T> {
@@ -58,6 +64,11 @@ public class BoundedStack<T> implements Stack<T> {
         @Override
         public T pop() {
             throw new Stack.UnderflowException();
+        }
+
+        @Override
+        public T top() {
+            throw new Stack.EmptyException();
         }
     }
 }

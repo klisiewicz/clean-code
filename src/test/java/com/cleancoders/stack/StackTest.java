@@ -20,12 +20,12 @@ public class StackTest {
         assertThat(stack.getSize(), is(0));
     }
 
-    @Test(expected = BoundedStack.IllegalCapacityException.class)
+    @Test(expected = Stack.IllegalCapacityException.class)
     public void whenCreatingStackWithNegativeSizeShouldThrowIllegalCapacity() {
         BoundedStack.<String>make(-1);
     }
 
-    @Test(expected = BoundedStack.OverflowException.class)
+    @Test(expected = Stack.OverflowException.class)
     public void whenCreatingStackWithZeroCapacityPushShouldOverflow() {
         stack = BoundedStack.make(0);
         stack.push("1");
@@ -52,7 +52,7 @@ public class StackTest {
         stack.push("3");
     }
 
-    @Test(expected = BoundedStack.UnderflowException.class)
+    @Test(expected = Stack.UnderflowException.class)
     public void whenEmptyIsPoppedStackShouldUnderflow() {
         stack.pop();
     }
@@ -69,5 +69,22 @@ public class StackTest {
         stack.push("2");
         assertThat(stack.pop(), is("2"));
         assertThat(stack.pop(), is("1"));
+    }
+
+    @Test
+    public void whenOneIsPushedOneShouldBeOnTop() {
+        stack.push("1");
+        assertThat(stack.top(), is("1"));
+    }
+
+    @Test(expected = Stack.EmptyException.class)
+    public void whenStackIsEmptyTopThrowsEmptyException() {
+        stack.top();
+    }
+
+    @Test(expected = Stack.EmptyException.class)
+    public void withZeroCapacityStackTopThrowsEmptyException() {
+        stack = BoundedStack.make(0);
+        stack.top();
     }
 }
