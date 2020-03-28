@@ -15,6 +15,7 @@ public class LychrelTest {
         convergesAtIteration(10, 1);
         convergesAtIteration(11, 0);
         convergesAtIteration(19, 2);
+        convergesAtIteration(78, 4);
     }
 
     private void convergesAtIteration(int n, int iteration) {

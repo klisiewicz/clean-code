@@ -2,16 +2,16 @@ package com.cleancoders.lychrel;
 
 public class Lychrel {
     public static int convergesAtIteration(int n, int limit) {
-        if (!isPalindrome(n)) {
-            final int r = reverse(n);
-            final int sum = r + n;
-            if (!isPalindrome(sum))
-                return 2;
-            else
-                return 1;
-        } else {
-            return 0;
-        }
+        int iteration = 0;
+        return converge(n, iteration);
+    }
+
+    private static int converge(int n, int iteration) {
+        if (!isPalindrome(n))
+            return converge(n + reverse(n), ++iteration);
+        else
+            return iteration;
+
     }
 
     static boolean isPalindrome(int n) {
