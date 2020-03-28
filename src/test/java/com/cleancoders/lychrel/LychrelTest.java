@@ -9,6 +9,7 @@ public class LychrelTest {
     @Test
     public void facts() {
         isNotLychrel(1, 0, 1000);
+        isNotLychrel(2, 0, 1000);
     }
 
     private void isNotLychrel(int n, int iteration, int limit) {
