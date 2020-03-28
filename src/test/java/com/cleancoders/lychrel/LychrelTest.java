@@ -24,7 +24,7 @@ public class LychrelTest {
     }
 
     private void convergesAtIteration(int n, int iteration) {
-        assertThat(Lychrel.convergesAtIteration(n, LIMIT), is(iteration));
+        assertThat(new Lychrel(LIMIT).convergesAtIteration(n), is(iteration));
     }
 
     private void doesNotConverge(int n) {

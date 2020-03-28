@@ -3,17 +3,22 @@ package com.cleancoders.lychrel;
 import java.math.BigInteger;
 
 public class Lychrel {
-    public static int convergesAtIteration(int n, int limit) {
-        int iteration = 0;
-        return converge(BigInteger.valueOf(n), iteration, limit);
+    private final int limit;
+
+    public Lychrel(int limit) {
+        this.limit = limit;
     }
 
-    private static int converge(BigInteger n, int iteration, int limit) {
+    public int convergesAtIteration(int n) {
+        int iteration = 0;
+        return converge(BigInteger.valueOf(n), iteration);
+    }
+
+    private int converge(BigInteger n, int iteration) {
         if (!isPalindrome(n) && iteration < limit)
-            return converge(n.add(reverse(n)), ++iteration, limit);
+            return converge(n.add(reverse(n)), ++iteration);
         else
             return iteration;
-
     }
 
     static boolean isPalindrome(BigInteger n) {
