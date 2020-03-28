@@ -9,13 +9,16 @@ public class Lychrel {
         this.limit = limit;
     }
 
+    static boolean isNotPalindrome(BigInteger n) {
+        return !isPalindrome(n);
+    }
+
     public int convergesAtIteration(int n) {
-        int iteration = 0;
-        return converge(BigInteger.valueOf(n), iteration);
+        return converge(BigInteger.valueOf(n), 0);
     }
 
     private int converge(BigInteger n, int iteration) {
-        if (!isPalindrome(n) && iteration < limit)
+        if (isNotPalindrome(n) && hasNotReachedLimit(iteration))
             return converge(n.add(reverse(n)), ++iteration);
         else
             return iteration;
@@ -30,6 +33,10 @@ public class Lychrel {
                 return false;
 
         return true;
+    }
+
+    private boolean hasNotReachedLimit(int iteration) {
+        return iteration < limit;
     }
 
     static BigInteger reverse(BigInteger n) {
