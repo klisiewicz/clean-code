@@ -2,6 +2,8 @@ package com.cleancoders.lychrel;
 
 import org.junit.Test;
 
+import java.math.BigInteger;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -16,6 +18,7 @@ public class LychrelTest {
         convergesAtIteration(11, 0);
         convergesAtIteration(19, 2);
         convergesAtIteration(78, 4);
+        convergesAtIteration(89, 24);
     }
 
     private void convergesAtIteration(int n, int iteration) {
@@ -32,7 +35,7 @@ public class LychrelTest {
     }
 
     private void isPalindrome(int n) {
-        assertThat(Lychrel.isPalindrome(n), is(true));
+        assertThat(Lychrel.isPalindrome(BigInteger.valueOf(n)), is(true));
     }
 
     @Test
@@ -43,7 +46,7 @@ public class LychrelTest {
     }
 
     private void isNotPalindrome(int n) {
-        assertThat(Lychrel.isPalindrome(n), is(false));
+        assertThat(Lychrel.isPalindrome(BigInteger.valueOf(n)), is(false));
     }
 
     @Test
@@ -58,6 +61,6 @@ public class LychrelTest {
     }
 
     private void reversed(int n, int r) {
-        assertThat(Lychrel.reverse(n), is(r));
+        assertThat(Lychrel.reverse(BigInteger.valueOf(n)), is(BigInteger.valueOf(r)));
     }
 }
