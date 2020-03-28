@@ -6,13 +6,15 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class LychrelTest {
+    private static final int LIMIT = 1000;
+
     @Test
     public void facts() {
-        isNotLychrel(1, 0, 1000);
-        isNotLychrel(2, 0, 1000);
+        isNotLychrel(1, 0);
+        isNotLychrel(2, 0);
     }
 
-    private void isNotLychrel(int n, int iteration, int limit) {
-        assertThat(Lychrel.convergesAtIteration(n, limit), is(iteration));
+    private void isNotLychrel(int n, int iteration) {
+        assertThat(Lychrel.convergesAtIteration(n, LIMIT), is(iteration));
     }
 }
