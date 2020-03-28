@@ -12,6 +12,7 @@ public class LychrelTest {
     public void facts() {
         isNotLychrel(1, 0);
         isNotLychrel(2, 0);
+        isNotLychrel(10, 1);
     }
 
     private void isNotLychrel(int n, int iteration) {
