@@ -19,10 +19,16 @@ public class LychrelTest {
         convergesAtIteration(19, 2);
         convergesAtIteration(78, 4);
         convergesAtIteration(89, 24);
+
+        doesNotConverge(196);
     }
 
     private void convergesAtIteration(int n, int iteration) {
         assertThat(Lychrel.convergesAtIteration(n, LIMIT), is(iteration));
+    }
+
+    private void doesNotConverge(int n) {
+        convergesAtIteration(n, LIMIT);
     }
 
     @Test

@@ -5,12 +5,12 @@ import java.math.BigInteger;
 public class Lychrel {
     public static int convergesAtIteration(int n, int limit) {
         int iteration = 0;
-        return converge(BigInteger.valueOf(n), iteration);
+        return converge(BigInteger.valueOf(n), iteration, limit);
     }
 
-    private static int converge(BigInteger n, int iteration) {
-        if (!isPalindrome(n))
-            return converge(n.add(reverse(n)), ++iteration);
+    private static int converge(BigInteger n, int iteration, int limit) {
+        if (!isPalindrome(n) && iteration < limit)
+            return converge(n.add(reverse(n)), ++iteration, limit);
         else
             return iteration;
 
