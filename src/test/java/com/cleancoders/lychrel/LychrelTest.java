@@ -13,9 +13,21 @@ public class LychrelTest {
         convergesAtIteration(1, 0);
         convergesAtIteration(2, 0);
         convergesAtIteration(10, 1);
+        convergesAtIteration(11, 0);
     }
 
     private void convergesAtIteration(int n, int iteration) {
         assertThat(Lychrel.convergesAtIteration(n, LIMIT), is(iteration));
+    }
+
+    @Test
+    public void palindromes() {
+        isPalindrome(1);
+        isPalindrome(11);
+        isPalindrome(121);
+    }
+
+    private void isPalindrome(int n) {
+        assertThat(Lychrel.isPalindrome(n), is(true));
     }
 }
