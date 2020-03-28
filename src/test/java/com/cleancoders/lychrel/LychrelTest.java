@@ -25,9 +25,22 @@ public class LychrelTest {
         isPalindrome(1);
         isPalindrome(11);
         isPalindrome(121);
+        isPalindrome(12321);
+        isPalindrome(1234321);
     }
 
     private void isPalindrome(int n) {
         assertThat(Lychrel.isPalindrome(n), is(true));
+    }
+
+    @Test
+    public void notPalindromes() {
+        isNotPalindrome(10);
+        isNotPalindrome(12331);
+        isNotPalindrome(1243321);
+    }
+
+    private void isNotPalindrome(int n) {
+        assertThat(Lychrel.isPalindrome(n), is(false));
     }
 }

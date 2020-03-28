@@ -10,6 +10,12 @@ public class Lychrel {
 
     static boolean isPalindrome(int n) {
         final String digits = Integer.toString(n);
-        return digits.charAt(0) == digits.charAt(digits.length() - 1);
+        final int lastIndex = digits.length() - 1;
+
+        for (int i = 0; i < digits.length(); i++)
+            if (digits.charAt(i) != digits.charAt(lastIndex - i))
+                return false;
+
+        return true;
     }
 }
