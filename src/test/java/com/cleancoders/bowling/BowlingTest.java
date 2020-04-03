@@ -35,22 +35,26 @@ public class BowlingTest {
     }
 
     @Test
-    public void oneStrikg() {
-        game.roll(10); // Strike
+    public void oneStrike() {
+        rollStrike();
         game.roll(3);
         game.roll(4);
         rollMany(16, 0);
         assertThat(game.getScore(), is(24));
     }
 
-    private void rollSpare() {
-        game.roll(5);
-        game.roll(5);
-    }
-
     private void rollMany(int n, int pins) {
         for (int i = 0; i < n; i++) {
             game.roll(pins);
         }
+    }
+
+    private void rollStrike() {
+        game.roll(10);
+    }
+
+    private void rollSpare() {
+        game.roll(5);
+        game.roll(5);
     }
 }
