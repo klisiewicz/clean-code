@@ -15,21 +15,20 @@ public class BowlingTest {
     }
 
     @Test
-    public void canRoll() {
-        game.roll(0);
-    }
-
-    @Test
     public void gutterGame() {
-        for (int i = 0; i < 20; i++)
-            game.roll(0);
+        rollMany(20, 0);
         assertThat(game.getScore(), is(0));
     }
 
     @Test
     public void allOnes() {
-        for (int i = 0; i < 20; i++)
-            game.roll(1);
+        rollMany(20, 1);
         assertThat(game.getScore(), is(20));
+    }
+
+    private void rollMany(int n, int pins) {
+        for (int i = 0; i < n; i++) {
+            game.roll(pins);
+        }
     }
 }
