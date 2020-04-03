@@ -1,16 +1,18 @@
 package com.cleancoders.bowling;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class BowlingTest {
-    @Test
-    public void canCreateGame() {
-        Game game = new Game();
+    private Game game;
+
+    @Before
+    public void setUp() {
+        game = new Game();
     }
 
     @Test
     public void canRoll() {
-        Game game = new Game();
         game.roll(0);
     }
 }
