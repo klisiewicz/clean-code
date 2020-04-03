@@ -1,7 +1,6 @@
 package com.cleancoders.bowling;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -27,7 +26,6 @@ public class BowlingTest {
         assertThat(game.getScore(), is(20));
     }
 
-    @Ignore
     @Test
     public void oneSpare() {
         game.roll(5);
