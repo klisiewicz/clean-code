@@ -28,11 +28,15 @@ public class BowlingTest {
 
     @Test
     public void oneSpare() {
-        game.roll(5);
-        game.roll(5); // Spare
+        rollSpare();
         game.roll(3);
         rollMany(17, 0);
         assertThat(game.getScore(), is(16));
+    }
+
+    private void rollSpare() {
+        game.roll(5);
+        game.roll(5);
     }
 
     private void rollMany(int n, int pins) {
