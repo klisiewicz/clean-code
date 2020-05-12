@@ -70,8 +70,7 @@ public class NameInverterTest {
             if (names.size() == 1) {
                 return names.get(0);
             } else {
-                final String postNominal = names.size() > 2 ? getPostNominals(names) : "";
-                return String.format("%s, %s %s", names.get(1), names.get(0), postNominal).trim();
+                return formatName(names);
             }
         }
     }
@@ -88,6 +87,11 @@ public class NameInverterTest {
 
     private boolean isHonorific(String word) {
         return word.matches("Mr\\.|Mrs\\.");
+    }
+
+    private String formatName(List<String> names) {
+        final String postNominal = names.size() > 2 ? getPostNominals(names) : "";
+        return String.format("%s, %s %s", names.get(1), names.get(0), postNominal).trim();
     }
 
     private String getPostNominals(List<String> names) {
