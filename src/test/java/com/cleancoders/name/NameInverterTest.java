@@ -11,6 +11,11 @@ public class NameInverterTest {
         assertThat(invertName(null), is(""));
     }
 
+    @Test
+    public void givenEmptyStringReturnsEmptyString() {
+        assertThat(invertName(""), is(""));
+    }
+
     private String invertName(String name) {
         return "";
     }
