@@ -62,10 +62,7 @@ public class NameInverterTest {
     }
 
     private String invertName(final String name) {
-        if (name == null)
-            return "";
-        else
-            return formatName(removeHonorifics(splitNames(name)));
+        return name == null ? "" : formatName(removeHonorifics(splitNames(name)));
     }
 
     private List<String> splitNames(final String name) {
@@ -76,20 +73,23 @@ public class NameInverterTest {
         return names.stream().filter(this::isNotHonorific).collect(Collectors.toList());
     }
 
-    private boolean isNotHonorific(String word) {
+    private boolean isNotHonorific(final String word) {
         return !word.matches("Mr\\.|Mrs\\.");
     }
 
-    private String formatName(List<String> names) {
-        return (names.size() == 1) ? names.get(0) : formatMultiElementName(names);
+    private String formatName(final List<String> names) {
+        return names.size() == 1 ? names.get(0) : formatMultiElementName(names);
     }
 
-    private String formatMultiElementName(List<String> names) {
-        final String postNominal = names.size() > 2 ? getPostNominals(names) : "";
-        return String.format("%s, %s %s", names.get(1), names.get(0), postNominal).trim();
+    private String formatMultiElementName(final List<String> names) {
+        final String postNominals = getPostNominals(names);
+        final String firstName = names.get(0);
+        final String lastName = names.get(1);
+        return String.format("%s, %s %s", lastName, firstName, postNominals).trim();
     }
 
-    private String getPostNominals(List<String> names) {
+    private String getPostNominals(final List<String> names) {
+        if (names.size() <= 2) return "";
         final List<String> postNominals = names.subList(2, names.size());
         return String.join(" ", postNominals);
     }
