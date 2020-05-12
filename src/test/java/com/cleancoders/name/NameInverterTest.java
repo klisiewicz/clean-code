@@ -53,14 +53,23 @@ public class NameInverterTest {
         if (name == null) {
             return "";
         } else {
-            final List<String> names = new ArrayList<>(Arrays.asList(name.trim().split("\\s+")));
-            if (names.size() > 1 && names.get(0).equals("Mr."))
+            final List<String> names = splitNames(name);
+            if (names.size() > 1 && isHonorific(names.get(0))) {
                 names.remove(0);
+            }
             if (names.size() == 1) {
                 return names.get(0);
             } else {
                 return String.format("%s, %s", names.get(1), names.get(0));
             }
         }
+    }
+
+    private ArrayList<String> splitNames(String name) {
+        return new ArrayList<>(Arrays.asList(name.trim().split("\\s+")));
+    }
+
+    private boolean isHonorific(String word) {
+        return word.equals("Mr.");
     }
 }
