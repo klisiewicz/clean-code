@@ -52,6 +52,11 @@ public class NameInverterTest {
         assertInverted("First Last BS. Phd.", "Last, First BS. Phd.");
     }
 
+    @Test
+    public void givenFirstLastSpacesPostNominalReturnsLastFirsPostNominal() {
+        assertInverted("    Robert   Martin   III esq.   ", "Martin, Robert III esq.");
+    }
+
     private void assertInverted(String originalName, String invertedName) {
         assertThat(invertName(originalName), is(invertedName));
     }
