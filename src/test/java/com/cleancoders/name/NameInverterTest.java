@@ -40,14 +40,13 @@ public class NameInverterTest {
         assertThat(invertName(originalName), is(invertedName));
     }
 
-    private String invertName(String name) {
+    private String invertName(final String name) {
         if (name == null) {
             return "";
         } else {
-            name = name.trim();
-            final String[] names = name.split("\\s+");
+            final String[] names = name.trim().split("\\s+");
             if (names.length == 1) {
-                return name;
+                return names[0];
             } else {
                 return String.format("%s, %s", names[1], names[0]);
             }
