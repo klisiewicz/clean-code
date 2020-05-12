@@ -66,9 +66,7 @@ public class NameInverterTest {
             return "";
         } else {
             final List<String> names = splitNames(name);
-            if (names.size() > 1 && isHonorific(names.get(0))) {
-                names.remove(0);
-            }
+            removeHonorifics(names);
             if (names.size() == 1) {
                 return names.get(0);
             } else {
@@ -80,6 +78,12 @@ public class NameInverterTest {
 
     private ArrayList<String> splitNames(String name) {
         return new ArrayList<>(Arrays.asList(name.trim().split("\\s+")));
+    }
+
+    private void removeHonorifics(List<String> names) {
+        if (names.size() > 1 && isHonorific(names.get(0))) {
+            names.remove(0);
+        }
     }
 
     private boolean isHonorific(String word) {
