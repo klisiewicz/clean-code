@@ -2,9 +2,9 @@ package com.cleancoders.name;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -68,19 +68,16 @@ public class NameInverterTest {
             return formatName(removeHonorifics(splitNames(name)));
     }
 
-    private ArrayList<String> splitNames(String name) {
-        return new ArrayList<>(Arrays.asList(name.trim().split("\\s+")));
+    private List<String> splitNames(final String name) {
+        return Arrays.asList(name.trim().split("\\s+"));
     }
 
-    private List<String> removeHonorifics(List<String> names) {
-        if (names.size() > 1 && isHonorific(names.get(0))) {
-            names.remove(0);
-        }
-        return names;
+    private List<String> removeHonorifics(final List<String> names) {
+        return names.stream().filter(this::isNotHonorific).collect(Collectors.toList());
     }
 
-    private boolean isHonorific(String word) {
-        return word.matches("Mr\\.|Mrs\\.");
+    private boolean isNotHonorific(String word) {
+        return !word.matches("Mr\\.|Mrs\\.");
     }
 
     private String formatName(List<String> names) {
