@@ -31,6 +31,11 @@ public class NameInverterTest {
         assertInverted(" Name ", "Name");
     }
 
+    @Test
+    public void givenFirstLastWithExtraSpacesReturnsLastFirst() {
+        assertInverted(" First  Last ", "Last, First");
+    }
+
     private void assertInverted(String originalName, String invertedName) {
         assertThat(invertName(originalName), is(invertedName));
     }
@@ -40,7 +45,7 @@ public class NameInverterTest {
             return "";
         } else {
             name = name.trim();
-            final String[] names = name.split(" ");
+            final String[] names = name.split("\\s+");
             if (names.length == 1) {
                 return name;
             } else {
