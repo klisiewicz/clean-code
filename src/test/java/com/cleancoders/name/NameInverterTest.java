@@ -21,12 +21,25 @@ public class NameInverterTest {
         assertInverted("Name", "Name");
     }
 
+    @Test
+    public void givenFirstLastReturnsLastFirst() {
+        assertInverted("First Last", "Last, First");
+    }
+
     private void assertInverted(String originalName, String invertedName) {
         assertThat(invertName(originalName), is(invertedName));
     }
 
     private String invertName(String name) {
-        if (name == null) return "";
-        return name;
+        if (name == null) {
+            return "";
+        } else {
+            final String[] names = name.split(" ");
+            if (names.length == 1) {
+                return name;
+            } else {
+                return String.format("%s, %s", names[1], names[0]);
+            }
+        }
     }
 }
