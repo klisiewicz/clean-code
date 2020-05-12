@@ -16,11 +16,17 @@ public class NameInverterTest {
         assertInverted("", "");
     }
 
+    @Test
+    public void givenSimpleNameReturnSimpleName() {
+        assertInverted("Name", "Name");
+    }
+
     private void assertInverted(String originalName, String invertedName) {
         assertThat(invertName(originalName), is(invertedName));
     }
 
     private String invertName(String name) {
-        return "";
+        if (name == null) return "";
+        return name;
     }
 }
