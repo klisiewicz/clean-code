@@ -62,23 +62,21 @@ public class NameInverterTest {
     }
 
     private String invertName(final String name) {
-        if (name == null) {
+        if (name == null)
             return "";
-        } else {
-            final List<String> names = splitNames(name);
-            removeHonorifics(names);
-            return formatName(names);
-        }
+        else
+            return formatName(removeHonorifics(splitNames(name)));
     }
 
     private ArrayList<String> splitNames(String name) {
         return new ArrayList<>(Arrays.asList(name.trim().split("\\s+")));
     }
 
-    private void removeHonorifics(List<String> names) {
+    private List<String> removeHonorifics(List<String> names) {
         if (names.size() > 1 && isHonorific(names.get(0))) {
             names.remove(0);
         }
+        return names;
     }
 
     private boolean isHonorific(String word) {
