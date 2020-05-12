@@ -49,6 +49,7 @@ public class NameInverterTest {
     @Test
     public void givenFirstLastPostNominalReturnsLastFirsPostNominal() {
         assertInverted("First Last Sr.", "Last, First Sr.");
+        assertInverted("First Last BS. Phd.", "Last, First BS. Phd.");
     }
 
     private void assertInverted(String originalName, String invertedName) {
@@ -66,7 +67,7 @@ public class NameInverterTest {
             if (names.size() == 1) {
                 return names.get(0);
             } else {
-                final String postNominal = names.size() > 2 ? names.get(2) : "";
+                final String postNominal = names.size() > 2 ? getPostNominals(names) : "";
                 return String.format("%s, %s %s", names.get(1), names.get(0), postNominal).trim();
             }
         }
@@ -78,5 +79,10 @@ public class NameInverterTest {
 
     private boolean isHonorific(String word) {
         return word.matches("Mr\\.|Mrs\\.");
+    }
+
+    private String getPostNominals(List<String> names) {
+        final List<String> postNominals = names.subList(2, names.size());
+        return String.join(" ", postNominals);
     }
 }
