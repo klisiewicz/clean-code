@@ -43,6 +43,7 @@ public class NameInverterTest {
     @Test
     public void givenHonorificFirstLastReturnsLastFirs() {
         assertInverted("Mr. First Last", "Last, First");
+        assertInverted("Mrs. First Last", "Last, First");
     }
 
     private void assertInverted(String originalName, String invertedName) {
@@ -70,6 +71,6 @@ public class NameInverterTest {
     }
 
     private boolean isHonorific(String word) {
-        return word.equals("Mr.");
+        return word.matches("Mr\\.|Mrs\\.");
     }
 }
