@@ -67,11 +67,7 @@ public class NameInverterTest {
         } else {
             final List<String> names = splitNames(name);
             removeHonorifics(names);
-            if (names.size() == 1) {
-                return names.get(0);
-            } else {
-                return formatName(names);
-            }
+            return formatName(names);
         }
     }
 
@@ -90,6 +86,10 @@ public class NameInverterTest {
     }
 
     private String formatName(List<String> names) {
+        return (names.size() == 1) ? names.get(0) : formatMultiElementName(names);
+    }
+
+    private String formatMultiElementName(List<String> names) {
         final String postNominal = names.size() > 2 ? getPostNominals(names) : "";
         return String.format("%s, %s %s", names.get(1), names.get(0), postNominal).trim();
     }
