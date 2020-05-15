@@ -12,9 +12,13 @@ import static org.hamcrest.core.Is.is;
 public class PrimeFactorTest {
     @Test
     public void shouldFactorIntoPrimes() {
-        assertThat(primesOf(1), is(emptyList()));
-        assertThat(primesOf(2), is(List.of(2)));
-        assertThat(primesOf(3), is(List.of(3)));
+        assertPrimerFactors(1, emptyList());
+        assertPrimerFactors(2, List.of(2));
+        assertPrimerFactors(3, List.of(3));
+    }
+
+    private void assertPrimerFactors(int n, List<Integer> primeFactors) {
+        assertThat(primesOf(n), is(primeFactors));
     }
 
     private List<Integer> primesOf(int n) {
