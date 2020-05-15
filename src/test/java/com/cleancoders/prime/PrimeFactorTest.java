@@ -2,7 +2,6 @@ package com.cleancoders.prime;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Collections.emptyList;
@@ -29,11 +28,6 @@ public class PrimeFactorTest {
     }
 
     private List<Integer> primesOf(int n) {
-        final ArrayList<Integer> factors = new ArrayList<>();
-        for (int divisor = 2; n > 1; divisor++)
-            for (; n % divisor == 0; n /= divisor)
-                factors.add(divisor);
-        return factors;
+        return new PrimeFactor().of(n);
     }
-
 }
