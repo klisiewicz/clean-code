@@ -8,9 +8,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class WordWrapperTest {
     @Test
     public void shouldWrap() {
-        assertThat(wrap(null, 1), is(""));
-        assertThat(wrap("", 1), is(""));
-        assertThat(wrap("x", 1), is("x"));
+        assertWraps(null, 1, "");
+        assertWraps("", 1, "");
+        assertWraps("x", 1, "x");
+    }
+
+    private void assertWraps(String input, int length, String expected) {
+        assertThat(wrap(input, length), is(expected));
     }
 
     private String wrap(String input, int lenght) {
