@@ -14,12 +14,13 @@ public class PrimeFactorTest {
     public void shouldFactorIntoPrimes() {
         assertThat(primesOf(1), is(emptyList()));
         assertThat(primesOf(2), is(List.of(2)));
+        assertThat(primesOf(3), is(List.of(3)));
     }
 
     private List<Integer> primesOf(int n) {
         final ArrayList<Integer> factors = new ArrayList<>();
         if (n > 1)
-            factors.add(2);
+            factors.add(n);
         return factors;
     }
 
