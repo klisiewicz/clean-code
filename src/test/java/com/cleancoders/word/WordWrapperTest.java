@@ -14,6 +14,7 @@ public class WordWrapperTest {
         assertWraps("xx", 1, "x\nx");
         assertWraps("xxx", 1, "x\nx\nx");
         assertWraps("x x", 1, "x\nx");
+        assertWraps("x xx", 3, "x\nxx");
     }
 
     private void assertWraps(String input, int length, String expected) {
@@ -25,7 +26,10 @@ public class WordWrapperTest {
         if (input.length() <= lenght) {
             return input;
         } else {
-            return input.substring(0, lenght) + "\n" + wrap(input.substring(lenght).trim(), lenght);
+            int breakPoint = input.lastIndexOf(" ", lenght);
+            if (breakPoint == -1)
+                breakPoint = lenght;
+            return input.substring(0, breakPoint) + "\n" + wrap(input.substring(breakPoint).trim(), lenght);
         }
     }
 }
