@@ -21,6 +21,7 @@ public class PrimeFactorTest {
         assertPrimerFactors(7, List.of(7));
         assertPrimerFactors(8, List.of(2, 2, 2));
         assertPrimerFactors(9, List.of(3, 3));
+        assertPrimerFactors(2 * 2 * 3 * 3 * 5 * 7 * 11 * 11 * 13, List.of(2, 2, 3, 3, 5, 7, 11, 11, 13));
     }
 
     private void assertPrimerFactors(int n, List<Integer> primeFactors) {
