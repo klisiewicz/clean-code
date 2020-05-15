@@ -25,15 +25,15 @@ public class WordWrapperTest {
         assertThat(wrap(input, length), is(expected));
     }
 
-    private String wrap(String input, int lenght) {
+    private String wrap(String input, int length) {
         if (input == null) return "";
-        if (input.length() <= lenght) {
+        if (input.length() <= length) {
             return input;
         } else {
-            int breakPoint = input.lastIndexOf(" ", lenght);
+            int breakPoint = input.lastIndexOf(" ", length);
             if (breakPoint == -1)
-                breakPoint = lenght;
-            return input.substring(0, breakPoint) + "\n" + wrap(input.substring(breakPoint).trim(), lenght);
+                breakPoint = length;
+            return input.substring(0, breakPoint) + "\n" + wrap(input.substring(breakPoint).trim(), length);
         }
     }
 }
