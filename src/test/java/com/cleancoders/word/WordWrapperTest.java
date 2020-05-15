@@ -10,9 +10,10 @@ public class WordWrapperTest {
     public void shouldWrap() {
         assertThat(wrap(null, 1), is(""));
         assertThat(wrap("", 1), is(""));
+        assertThat(wrap("x", 1), is("x"));
     }
 
     private String wrap(String input, int lenght) {
-        return "";
+        return input == null ? "" : input;
     }
 }
