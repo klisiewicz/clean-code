@@ -20,6 +20,7 @@ public class PrimeFactorTest {
         assertPrimerFactors(6, List.of(2, 3));
         assertPrimerFactors(7, List.of(7));
         assertPrimerFactors(8, List.of(2, 2, 2));
+        assertPrimerFactors(9, List.of(3, 3));
     }
 
     private void assertPrimerFactors(int n, List<Integer> primeFactors) {
@@ -32,6 +33,10 @@ public class PrimeFactorTest {
             while (n % 2 == 0) {
                 factors.add(2);
                 n /= 2;
+            }
+            while (n % 3 == 0) {
+                factors.add(3);
+                n /= 3;
             }
             if (n > 1) {
                 factors.add(n);
