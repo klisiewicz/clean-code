@@ -5,20 +5,22 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.Collections.emptyList;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
 public class PrimeFactorTest {
     @Test
     public void shouldFactorIntoPrimes() {
-        assertThat(list(), is(of(1)));
+        assertThat(primesOf(1), is(emptyList()));
+        assertThat(primesOf(2), is(List.of(2)));
     }
 
-    private List<Integer> of(int n) {
-        return new ArrayList<>();
+    private List<Integer> primesOf(int n) {
+        final ArrayList<Integer> factors = new ArrayList<>();
+        if (n > 1)
+            factors.add(2);
+        return factors;
     }
 
-    private List<Integer> list() {
-        return List.of();
-    }
 }
